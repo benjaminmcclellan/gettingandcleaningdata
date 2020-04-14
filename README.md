@@ -3,24 +3,36 @@ title: "README"
 author: "Ben McClellan"
 date: "4/14/2020"
 output: html_document
----# gettingandcleaningdata
+--- gettingandcleaningdata
 Updated 04/14/2020
 run_analysis.R script
-=======
+
+Downloading the data 
+========
 This script downloads data from an online source, creates a local version of the data, cleans up the data and then performs some basic analyses on the dataset.  This script works with data created by Jorge L. Reyes-Ortiz et al. in a study in data collection on movement using a Samsung Galaxy S. I included the original "README" file at the end of this document, which pertains to the original data collection.  
-=======
+
 The first seciton of code checks for a local directory "data" and creates one if one does not already exist. This function occurs in the current working directory when run.  The script then downloads a compressed file with multiple data files contained within it.  Following a download of the compressed data, the folders and files are extracted into a functional form. 
-=======
+
+Compiling the data into separate training and test data frames
+==========
 Following downloading the desired data to local files, the desired data files were loaded into the working environment.  The features file contains all of the column labels for both the training and test data, as the number of rows in the features files corresponds with the number of columns in both the training and test data.  The activity labels and subject labels were also located in files separate from the bulk of the training and testing data.  Both activity lables and subject data were loaded in for both the training run and the test run.  The measured data from the phones was located in the "X_train" and "X_test" files.  These were both then loaded into the working environment.  Following loading all of the desired data, the activity labels and subject data were both added onto the training and testing measurement data as their own columns, though the testing and training data remains separated at this point.  
-=======
+
+Merging the data
+==========
 To merge the two data frames, first ids were assigned to each data set so that no overlap would be present in the merging process.  Since both data frames for train and test contain the same column format in what they measure and the order that those measurements are arranged in, the rows are binded together to create a dataset "all_data" that covers both the training and test runs.  
-=======
+
+Extracting mean and standard deviation measurements
+==========
 The following selection of the script extracts only the measurements collected that contain means and standard deviations of various measurements.  This is obtained by creating a new dataset that selects only columnts containing the regular expressions "mean()" or "std()".
-=======
+
+Labeling the activities
+==========
 The provided data from the online source gives the activiy labels in a coded form.  This form can be seen in the file "activity_labels.txt".  To provide more informative data, the next section of the script provides an ordered character vector pertaining to the provided numbers in the already-loaded activity data.  A new column containing the activity names is created in reference to the already-loaded activity number data.  The script then rearranges the data so that the activity data(both columns) and the subject numbers load at the beginning of the data frame.  
-========
+
+Getting the mean based on subject-activity pairings
+===========
 The final portion of the script groups the data by the subject and the activity and then provides an average of each column based on each grouping.  This is to say that the average of each variable for a certain subject performing a certain activity is calculated and organized into a new data frame: "tidydata".
-========
+
 
 README from raw data folder provided by Reyes-Ortiz et al.
 ==================================================================
